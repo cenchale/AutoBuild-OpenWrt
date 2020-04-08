@@ -116,7 +116,13 @@ jobs:
         cp target/linux/x86/64/config-4.19 bin/configx64
         cp target/linux/x86/config-4.19 bin/configx86
         make -j$(nproc) V=s
-
+        
+    - name: SSH connection to Actions SSH登陆配置
+      env:
+        SSH_ACTIONS: true    
+      uses: P3TERX/debugger-action@master
+      if: env.SSH_ACTIONS == 'true'
+      
     - name : Upload artifact  打包上传固件
       uses: actions/upload-artifact@master
       with:
