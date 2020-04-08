@@ -99,10 +99,10 @@ jobs:
       uses: P3TERX/debugger-action@master
       if: env.SSH_ACTIONS == 'true'
  
-    - name: 上传固件
-      working-directory: ./openwrt
-      run: |
-        chmod +x ./upload.sh && ./upload.sh
+ #   - name: 测试上传
+ #     working-directory: ./openwrt
+ #     run: |
+ #       chmod +x ./upload.sh && ./upload.sh
         
     - name: Download package
       working-directory: ./openwrt
