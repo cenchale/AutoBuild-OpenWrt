@@ -72,6 +72,12 @@ jobs:
         ./scripts/feeds install -a
         ./scripts/feeds install -a
 
+    - name: SSH connection to Actions SSH登陆配置
+      env:
+        SSH_ACTIONS: true    
+      uses: P3TERX/debugger-action@master
+      if: env.SSH_ACTIONS == 'true'
+      
     - name: Import external feeds 安装额外插件
       working-directory: ./openwrt
       run: |
@@ -92,12 +98,6 @@ jobs:
         [ -e $KERNEL_FILE ] && mv $KERNEL_FILE openwrt/target/linux/x86/config-4.19
         chmod +x ./customize_x86_64.sh && ./customize_x86_64.sh
         cd openwrt && make defconfig
-  
-    - name: SSH connection to Actions SSH登陆配置
-      env:
-        SSH_ACTIONS: true    
-      uses: P3TERX/debugger-action@master
-      if: env.SSH_ACTIONS == 'true'
  
  #   - name: 测试上传
  #     working-directory: ./openwrt
