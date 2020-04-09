@@ -1,16 +1,20 @@
 ﻿# AutoBuild-OpenWrt
 
+感谢P3TERX、esir的付出
+
 自动云编译openwrt固件
 适配：x64、R619AC
 固件来源：lean'openwrt git仓库
 
 添加、passwall、adguard、openclash等插件
 
-使用方法：更新对应*.config配置文件，x86-x64v1版为内核配置版本，x86-x64kernel.config为内核配置文件
+使用方法：更新对应*.config配置文件，x86-x64v1版为内核配置版本，x86-x64kernel.config为内核配置文件，x86-x64v2为默认内核配置文件，R619AC.config就是字面意思。
 
+注意：upload.sh是我自己ssh导入的脚本，上传固件至我的ftp上；上传artifact的流程我已经注释掉了，如果需要使用的请取消注释
 
 Build OpenWrt firware [Lean's OpenWrt](https://github.com/coolsnowwolf/lede) using GitHub Actions  
 Hereby thank P3TERX for his amazing job: https://github.com/P3TERX/Actions-OpenWrt/
+
 
 ## Usage
 
@@ -22,4 +26,4 @@ Hereby thank P3TERX for his amazing job: https://github.com/P3TERX/Actions-OpenW
 - When the build is complete, click the `Artifacts` button in the upper right corner of the Actions page to download the binaries.
 - Default Web Admin IP: `192.168.1.1`, username `root`，password `password`
 
-[For the details please visit my Y2B Channel (in Chinese) | 视频教程](https://www.youtube.com/c/esirplayground)
+
