@@ -106,15 +106,16 @@ jobs:
       working-directory: ./openwrt
       run: |
         echo -e "$(nproc) thread build."
-        make -j$(nproc) V=s
+        make -j1 V=s
+    #    make -j$(nproc) V=s
         
     - name: 上传固件
       working-directory: ./openwrt
       run: |
         chmod +x ./upload.sh && ./upload.sh        
 
-    - name : Upload artifact  上传成果
-      uses: actions/upload-artifact@master
-      with:
-        name: OpenWrt
-        path: openwrt/bin
+ #   - name : Upload artifact  上传成果
+ #     uses: actions/upload-artifact@master
+ #     with:
+ #       name: OpenWrt
+ #       path: openwrt/bin
