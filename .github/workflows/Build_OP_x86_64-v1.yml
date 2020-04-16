@@ -122,9 +122,9 @@ jobs:
      #   make -j$(nproc) V=s
         
     - name: 上传固件
-      working-directory: ./openwrt
       run: |
-        chmod +x ./upload.sh && ./upload.sh
+          cd openwrt
+          chmod +x ./upload.sh && ./upload.sh
       
  #   - name : Upload artifact  打包上传固件
  #     uses: actions/upload-artifact@master
