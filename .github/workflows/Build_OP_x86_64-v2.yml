@@ -80,8 +80,7 @@ jobs:
     - name: Import external feeds 安装额外插件
       working-directory: ./openwrt
       run: |
-        git clone https://github.com/Lienol/openwrt-package package/lienol
-        git clone https://github.com/rufengsuixing/luci-app-adguardhome.git package/adguard
+        git clone https://github.com/cenchale/lienol-openwrt-package.git package/lienol
         git clone https://github.com/tty228/luci-app-serverchan.git package/serverchan
         git clone https://github.com/vernesong/OpenClash.git package/openclash
     #    git clone "your_github_link" package/"your_folder_name"      
@@ -101,20 +100,36 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Build firmware 编译固件
-      working-directory: ./openwrt
+    - name: Multi-thread compile 多线程编译
       run: |
-        echo -e "$(nproc) thread build."
-        make -j1 V=s
+          cd openwrt
+          echo -e "$(nproc) thread build."
+          make -j$(nproc) V=s
+
+
+    - name: Single-thread compile 单线程编译
+      if: failure()
+      run: |
+          cd openwrt
+          make -j1 V=s
+          
+ #   - name: Build firmware 编译固件
+ #     working-directory: ./openwrt
+  #    run: |
+  #      echo -e "$(nproc) thread build."
+  #      make -j1 V=s
     #    make -j$(nproc) V=s
         
     - name: 上传固件
       run: |
           cd openwrt
+          cp .config bin/targets/x86/64/configx64
+          cp target/linux/x86/64/config-4.19 bin/targets/x86/64/configx64
+          cp target/linux/x86/config-4.19 bin/targets/x86/64/configx86
           chmod +x ./upload.sh && ./upload.sh
 
- #   - name : Upload artifact  上传成果
- #     uses: actions/upload-artifact@master
- #     with:
- #       name: OpenWrt
- #       path: openwrt/bin
+    - name : Upload artifact  上传成果
+      uses: actions/upload-artifact@master
+      with:
+        name: OpenWrt
+        path: openwrt/bin
