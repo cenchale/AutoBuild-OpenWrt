@@ -80,9 +80,11 @@ jobs:
     - name: Import external feeds 安装额外插件
       working-directory: ./openwrt
       run: |
-        git clone https://github.com/cenchale/lienol-openwrt-package package/lienol
+        git clone https://github.com/Lienol/openwrt-package.git package/lienol
         git clone https://github.com/tty228/luci-app-serverchan.git package/serverchan
         git clone https://github.com/vernesong/OpenClash.git package/openclash
+        git clone https://github.com/cenchale/helloworld.git package/helloworld
+        git clone https://github.com/cenchale/Lienol-obsolete.git package/passwall
     #    git clone "your_github_link" package/"your_folder_name"      
 
     - name: Configuration Customization 自定义
@@ -120,13 +122,13 @@ jobs:
   #      make -j1 V=s
     #    make -j$(nproc) V=s
         
-    - name: 上传固件
-      run: |
-          cd openwrt
-          cp .config bin/targets/x86/64/configx64
-          cp target/linux/x86/64/config-4.19 bin/targets/x86/64/configx64
-          cp target/linux/x86/config-4.19 bin/targets/x86/64/configx86
-          chmod +x ./upload.sh && ./upload.sh
+  #  - name: 上传固件
+  #    run: |
+   #       cd openwrt
+   #       cp .config bin/targets/x86/64/configx64
+    #      cp target/linux/x86/64/config-4.19 bin/targets/x86/64/configx64
+   #       cp target/linux/x86/config-4.19 bin/targets/x86/64/configx86
+    #      chmod +x ./upload.sh && ./upload.sh
 
     - name : Upload artifact  上传成果
       uses: actions/upload-artifact@master

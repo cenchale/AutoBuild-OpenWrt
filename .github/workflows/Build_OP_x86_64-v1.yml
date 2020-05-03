@@ -81,10 +81,11 @@ jobs:
     - name: Import external feeds 安装额外插件
       working-directory: ./openwrt
       run: |
-        git clone https://github.com/cenchale/lienol-openwrt-package package/lienol
+        git clone https://github.com/Lienol/openwrt-package.git package/lienol
         git clone https://github.com/tty228/luci-app-serverchan.git package/serverchan
         git clone https://github.com/vernesong/OpenClash.git package/openclash
-        git clone https://github.com/fw876/helloworld.git package/helloworld
+        git clone https://github.com/cenchale/helloworld.git package/helloworld
+        git clone https://github.com/cenchale/Lienol-obsolete.git package/passwall
     #    git clone "your_github_link" package/"your_folder_name"      
 
     - name: Configuration Customization 定制化内容
