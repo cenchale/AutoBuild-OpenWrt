@@ -75,9 +75,9 @@ jobs:
     #  env:
     #    SSH_ACTIONS: false    
     #  uses: P3TERX/debugger-action@master
-    #  if: env.SSH_ACTIONS == 'true'
-      
-     - name: SSH connection to Actions SSH登陆配置
+    #  if: env.SSH_ACTIONS == 'true'  
+
+    - name: SSH connection to Actions SSH登陆配置
        env:
          SSH_ACTIONS: false   
        uses: P3TERX/debugger-action@main
