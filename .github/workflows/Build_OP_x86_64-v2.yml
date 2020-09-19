@@ -73,7 +73,7 @@ jobs:
 
     - name: SSH connection to Actions SSH登陆配置
       env:
-        SSH_ACTIONS: true    
+        SSH_ACTIONS: false    
       uses: P3TERX/debugger-action@master
       if: env.SSH_ACTIONS == 'true'
       
@@ -83,8 +83,8 @@ jobs:
         git clone https://github.com/Lienol/openwrt-package.git package/lienol
         git clone https://github.com/tty228/luci-app-serverchan.git package/serverchan
         git clone https://github.com/vernesong/OpenClash.git package/openclash
-        git clone https://github.com/cenchale/helloworld.git package/helloworld
-        git clone https://github.com/cenchale/Lienol-obsolete.git package/passwall
+    #    git clone https://github.com/cenchale/helloworld.git package/helloworld
+    #    git clone https://github.com/cenchale/Lienol-obsolete.git package/passwall
     #    git clone "your_github_link" package/"your_folder_name"      
 
     - name: Configuration Customization 自定义
