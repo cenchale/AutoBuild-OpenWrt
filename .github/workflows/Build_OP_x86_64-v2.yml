@@ -71,11 +71,11 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
-    - name: SSH connection to Actions SSH登陆配置
-      env:
-        SSH_ACTIONS: false    
-      uses: P3TERX/debugger-action@master
-      if: env.SSH_ACTIONS == 'true'
+    #- name: SSH connection to Actions SSH登陆配置
+    #  env:
+    #    SSH_ACTIONS: false    
+    #  uses: P3TERX/debugger-action@master
+    #  if: env.SSH_ACTIONS == 'true'
       
     - name: Import external feeds 安装额外插件
       working-directory: ./openwrt
