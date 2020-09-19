@@ -77,6 +77,12 @@ jobs:
     #  uses: P3TERX/debugger-action@master
     #  if: env.SSH_ACTIONS == 'true'
       
+     - name: SSH connection to Actions SSH登陆配置
+       env:
+         SSH_ACTIONS: false   
+       uses: P3TERX/debugger-action@main
+       if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
+    
     - name: Import external feeds 安装额外插件
       working-directory: ./openwrt
       run: |
