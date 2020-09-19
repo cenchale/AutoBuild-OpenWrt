@@ -136,38 +136,38 @@ jobs:
    #       cp target/linux/x86/config-4.19 bin/targets/x86/64/configx86
     #      chmod +x ./upload.sh && ./upload.sh
 
-      - name: Prepare artifact 准备固件
-        run: |
-          mkdir -p ./artifact/firmware
-          mkdir -p ./artifact/package
-          mkdir -p ./artifact/buildinfo
-          rm -rf $(find ./bin/targets/ -type d -name "packages")
-          cp -rf $(find ./bin/targets/ -type f) ./artifact/firmware/
-          cp -rf $(find ./bin/packages/ -type f -name "*.ipk") ./artifact/package/
-          cp -rf $(find ./bin/targets/ -type f -name "*.buildinfo" -o -name "*.manifest") ./artifact/buildinfo/
+     - name: Prepare artifact 准备固件
+       run: |
+        mkdir -p ./artifact/firmware
+         mkdir -p ./artifact/package
+         mkdir -p ./artifact/buildinfo
+         rm -rf $(find ./bin/targets/ -type d -name "packages")
+         cp -rf $(find ./bin/targets/ -type f) ./artifact/firmware/
+         cp -rf $(find ./bin/packages/ -type f -name "*.ipk") ./artifact/package/
+         cp -rf $(find ./bin/targets/ -type f -name "*.buildinfo" -o -name "*.manifest") ./artifact/buildinfo/
 
-      - name: Deliver buildinfo
-        uses: actions/upload-artifact@master
-        with:
-          name: OpenWrt_buildinfo
-          path: ./artifact/buildinfo/    
+     - name: Deliver buildinfo
+       uses: actions/upload-artifact@master
+       with:
+         name: OpenWrt_buildinfo
+         path: ./artifact/buildinfo/    
 
-      - name: Deliver package
-        uses: actions/upload-artifact@master
-        with:
-          name: OpenWrt_package
-          path: ./artifact/package/
+     - name: Deliver package
+       uses: actions/upload-artifact@master
+       with:
+        name: OpenWrt_package
+        path: ./artifact/package/
           
-      - name: Deliver firmware
-        uses: actions/upload-artifact@master
-        with:
-          name: OpenWrt_firmware
-          path: ./bin/targets/
+     - name: Deliver firmware
+       uses: actions/upload-artifact@master
+       with:
+         name: OpenWrt_firmware
+         path: ./bin/targets/
 
-      - name: Upload release asset
-        uses: svenstaro/upload-release-action@master
-        with:
-          file: ./artifact/firmware/*
+     - name: Upload release asset
+       uses: svenstaro/upload-release-action@master
+       with:
+         file: ./artifact/firmware/*
          
     - name : Upload artifact  上传固件
       uses: actions/upload-artifact@master
