@@ -15,7 +15,7 @@ on:
     branches: 
       - master
     paths:
-      - 'x86_64-v2.config'
+      - 'x86_64-lienol5.4.config'
 
   #schedule:
   #  - cron: 0 8 * * 5
@@ -106,7 +106,6 @@ jobs:
           cd openwrt
           echo -e "$(nproc) thread build."
           make -j$(nproc) V=s
-
 
     - name: Single-thread compile 单线程编译
       if: failure()
