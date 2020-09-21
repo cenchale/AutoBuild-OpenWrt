@@ -5,7 +5,7 @@
 # modifier: cenchale 
 #=================================================
 
-name: Build_x86_64-v2
+name: Build_x86_64-lienol19
 
 on: 
   release:
@@ -15,7 +15,7 @@ on:
     branches: 
       - master
     paths:
-      - 'x86_64-v2.config'
+      - 'x86_64-lienol19.config'
 
   #schedule:
   #  - cron: 0 8 * * 5
@@ -88,7 +88,7 @@ jobs:
 
     - name: Configuration Customization 自定义
       env:
-        CONFIG_FILE: 'x86_64-lienol5.4.config'
+        CONFIG_FILE: 'x86_64-lienol19.config'
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
