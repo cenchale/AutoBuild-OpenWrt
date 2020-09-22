@@ -20,13 +20,14 @@ on:
   #schedule:
   #  - cron: 0 8 * * 5
   
-  #watch:
-  #  types: [started]
+  watch:
+    types: [started]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    if: github.event.repository.owner.id == github.event.sender.id
+    
     steps:
     - name: Checkout 检查文件
       uses: actions/checkout@master
