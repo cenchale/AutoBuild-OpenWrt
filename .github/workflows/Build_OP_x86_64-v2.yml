@@ -169,9 +169,18 @@ jobs:
  #     uses: svenstaro/upload-release-action@master
  #     with:
  #        file: ./artifact/firmware/*
-         
-    - name : Upload artifact  上传固件
-      uses: actions/upload-artifact@master
+
+    - name: FTP-Deploy-Action
+      uses: cenchale/FTP-Deploy-Action@3.1.1
       with:
-        name: OpenWrt
-        path: openwrt/bin
+        ftp-server: ftp://${{ secrets.FTP_HOST }}/op
+        ftp-username: ${{secrets.FTP_ID}}
+        ftp-password: ${{secrets.FTP_KEY}}
+        local-dir: ./
+
+         
+ #   - name : Upload artifact  上传固件
+ #     uses: actions/upload-artifact@master
+#      with:
+#        name: OpenWrt
+#        path: openwrt/bin
