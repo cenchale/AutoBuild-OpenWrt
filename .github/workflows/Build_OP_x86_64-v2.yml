@@ -179,8 +179,9 @@ jobs:
         local-dir: ./
 
          
- #   - name : Upload artifact  上传固件
- #     uses: actions/upload-artifact@master
-#      with:
-#        name: OpenWrt
-#        path: openwrt/bin
+    - name : Upload artifact  上传固件
+      if: failure()
+      uses: actions/upload-artifact@master
+      with:
+        name: OpenWrt
+        path: openwrt/bin
