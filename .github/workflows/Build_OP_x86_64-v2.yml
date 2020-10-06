@@ -108,16 +108,18 @@ jobs:
           mkdir bin
           cd bin 
           wget ${{secrets.HTTP_SERVER}}/test.txt
-          cd ..
           wget ${{secrets.HTTP_SERVER}}/test1.txt  
-          cd ..        
+          cd ..
+          zip -r bin.zip bin  
+          mv bin.zip ./bin/bin.zip      
 
     - name: FTP-Deploy-Action test
       uses: SamKirkland/FTP-Deploy-Action@master
       with:
         ftp-server: ftp://${{ secrets.FTP_HOST }}/op
         ftp-username: ${{secrets.FTP_ID}}
-        ftp-password: ${{secrets.FTP_KEY}}        
+        ftp-password: ${{secrets.FTP_KEY}} 
+        local-dir: ./openwrt/bin
      
     - name: Download package
       working-directory: ./openwrt
@@ -142,7 +144,8 @@ jobs:
     - name: zip 打包
       run: |
           cd openwrt
-          zip -r openwrt.zip bin
+          zip -r openwrt.zip bin  
+          mv openwrt.zip ./bin/openwrt.zip  
           
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@master
@@ -150,6 +153,7 @@ jobs:
         ftp-server: ftp://${{ secrets.FTP_HOST }}/op
         ftp-username: ${{secrets.FTP_ID}}
         ftp-password: ${{secrets.FTP_KEY}}
+        local-dir: ./openwrt/bin
        
     - name : Upload artifact  上传固件
       if: failure()
