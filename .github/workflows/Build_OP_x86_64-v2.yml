@@ -100,26 +100,7 @@ jobs:
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
-        cd openwrt && make defconfig
-
-    - name: download files test
-      run: |
-          cd openwrt
-          mkdir bin
-          cd bin 
-          wget ${{secrets.HTTP_SERVER}}/test.txt
-          wget ${{secrets.HTTP_SERVER}}/test1.txt  
-          cd ..
-          zip -r bin.zip bin  
-          mv bin.zip ./bin/bin.zip      
-
-    - name: FTP-Deploy-Action test
-      uses: SamKirkland/FTP-Deploy-Action@master
-      with:
-        ftp-server: ftp://${{ secrets.FTP_HOST }}/op
-        ftp-username: ${{secrets.FTP_ID}}
-        ftp-password: ${{secrets.FTP_KEY}} 
-        local-dir: ./openwrt/bin
+        cd openwrt && make defconfig  
      
     - name: Download package
       working-directory: ./openwrt
@@ -145,7 +126,7 @@ jobs:
       run: |
           cd openwrt
           zip -r openwrt.zip bin  
-          mv openwrt.zip ./bin/openwrt.zip  
+          mv openwrt.zip ./bin/openwrt.zip      
           
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@master
