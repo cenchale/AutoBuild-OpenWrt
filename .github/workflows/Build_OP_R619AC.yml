@@ -93,7 +93,7 @@ jobs:
     - name: SSH connection to Actions SSH登陆配置
       env:
         SSH_ACTIONS: false    
-      uses: P3TERX/debugger-action@master
+      uses: P3TERX/debugger-action@main
       if: env.SSH_ACTIONS == 'true'
       
     - name: Download package
@@ -124,6 +124,7 @@ jobs:
         local-dir: ./openwrt/bin
 
     - name : Upload artifact  上传固件
+      if: failure()
       uses: actions/upload-artifact@master
       with:
         name: ipq40xx
