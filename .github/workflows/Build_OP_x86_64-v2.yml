@@ -87,14 +87,20 @@ jobs:
     - name: Import external feeds 安装额外插件
       working-directory: ./openwrt
       run: |
-        git clone https://github.com/Lienol/openwrt-package.git package/lienol
+        git clone https://github.com/xiaorouji/openwrt-package.git package/lienol
+        git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/jerrykuku
         git clone https://github.com/vernesong/OpenClash.git package/openclash
-        git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/jddailybonus
         git clone https://github.com/tty228/luci-app-serverchan.git package/serverchan        
     #    git clone https://github.com/cenchale/helloworld.git package/helloworld
     #    git clone https://github.com/cenchale/Lienol-obsolete.git package/passwall
     #    git clone "your_github_link" package/"your_folder_name"      
-
+     
+    - name: external theme
+      working-directory: ./openwrt/package/lean
+      run: |
+          rm -rf luci-theme-argon  
+          git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git   
+               
     - name: Configuration Customization 自定义
       env:
         CONFIG_FILE: 'x86_64-v2.config'
@@ -102,7 +108,7 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
         cd openwrt && make defconfig  
-     
+
     - name: Download package
       working-directory: ./openwrt
       run: |
