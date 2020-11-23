@@ -135,16 +135,16 @@ jobs:
           zip -r openwrt.zip bin  
           mv openwrt.zip ./bin/openwrt.zip      
           
-    - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@master
-      with:
-        ftp-server: ftp://${{ secrets.FTP_HOST }}/op
-        ftp-username: ${{secrets.FTP_ID}}
-        ftp-password: ${{secrets.FTP_KEY}}
-        local-dir: ./openwrt/bin
+#    - name: FTP-Deploy-Action
+#      uses: SamKirkland/FTP-Deploy-Action@master
+#      with:
+#        ftp-server: ftp://${{ secrets.FTP_HOST }}/op
+#        ftp-username: ${{secrets.FTP_ID}}
+#        ftp-password: ${{secrets.FTP_KEY}}
+#        local-dir: ./openwrt/bin
        
     - name : Upload artifact  上传固件
-      if: failure()
+#      if: failure()
       uses: actions/upload-artifact@master
       with:
         name: OpenWrt
