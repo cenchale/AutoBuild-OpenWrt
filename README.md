@@ -10,8 +10,6 @@
 
 使用方法：更新对应*.config配置文件，x86-x64v1版为内核配置版本，x86-x64kernel.config为内核配置文件，x86-x64v2为默认内核配置文件，R619AC.config就是字面意思。
 
-注意：upload.sh是我自己ssh导入的脚本，上传固件至我的ftp上；上传artifact的流程我已经注释掉了，如果需要使用的请取消注释
-
 Build OpenWrt firware [Lean's OpenWrt](https://github.com/coolsnowwolf/lede) using GitHub Actions  
 Hereby thank P3TERX for his amazing job: https://github.com/P3TERX/Actions-OpenWrt/
 
