@@ -81,8 +81,8 @@ jobs:
     - name: Import external feeds 安装额外插件
       working-directory: ./openwrt
       run: |
-        git clone https://github.com/xiaorouji/openwrt-passwall.git package/lienol
-        git clone https://github.com/tty228/luci-app-serverchan.git package/serverchan        
+        git clone https://github.com/xiaorouji/openwrt-passwall.git package/passwall
+    #    git clone https://github.com/tty228/luci-app-serverchan.git package/serverchan        
     #    git clone https://github.com/cenchale/helloworld.git package/helloworld
      
     - name: external theme
